@@ -26,7 +26,7 @@ try {
 
     // Avsändare och mottagare
     $mail->setFrom($env['SMTP_FROM'], $env['SMTP_FROM_NAME']);
-    $mail->addAddress('din-mottagare@exempel.com'); // byt till din egen e-post
+    $mail->addAddress('annasigridmolly@gmail.com'); // byt till din egen e-post
 
     // Ta emot data från formuläret
     $name    = $_POST['name'] ?? '';
