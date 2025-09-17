@@ -2,23 +2,27 @@
 const menuToggle = document.getElementById("menu-toggle");
 const navbar = document.getElementById("navbar");
 
-menuToggle.addEventListener("click", () => {
-  navbar.classList.toggle("active");
-});
+if (menuToggle) {
+  menuToggle.addEventListener("click", () => {
+    navbar.classList.toggle("active");
+  });
+}
 
 // ----- Fade-in för sektioner -----
 const hiddenElements = document.querySelectorAll(".hidden");
 
-const observer = new IntersectionObserver((entries, observer) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add("show");
-      observer.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.2 });
+if (hiddenElements.length > 0) {
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("show");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
 
-hiddenElements.forEach(el => observer.observe(el));
+  hiddenElements.forEach(el => observer.observe(el));
+}
 
 // ----- Formspree kontaktformulär -----
 const form = document.getElementById('contact-form');
@@ -40,7 +44,7 @@ if (form) {
       if (response.ok) {
         successMessage.style.display = 'block';
         errorMessage.style.display = 'none';
-        form.reset(); // Tömmer formuläret
+        form.reset();
       } else {
         throw new Error('Något gick fel');
       }
