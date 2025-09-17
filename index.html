@@ -11,19 +11,19 @@
   <link rel="stylesheet" href="style/style.css" />
 </head>
 
-<body>
-  <!-- Header & Nav -->
-  <header>
-    <h1><a href="index.html">Entreprenörsbolaget</a></h1>
-    <nav id="navbar">
-      <a href="#about">Om oss</a>
-      <a href="#services">Våra tjänster</a>
-      <a href="#products">Produkter</a>
-      <a href="#reviews">Recensioner</a>
-      <a href="#contact">Kontakt</a>
-      <button id="menu-toggle">☰</button>
-    </nav>
-  </header>
+  <body>
+    <!-- Header & Nav -->
+    <header>
+      <h1><a href="index.html">Entreprenörsbolaget</a></h1>
+      <nav id="navbar">
+        <a href="#about">Om oss</a>
+        <a href="#services">Våra tjänster</a>
+        <a href="#products">Produkter</a>
+        <a href="#reviews">Recensioner</a>
+        <a href="#contact">Kontakt</a>
+        <button id="menu-toggle">☰</button>
+      </nav>
+    </header>
 
   <div id="hero" class="parallax">
     <video id="hero-video" autoplay loop muted playsinline>
@@ -33,85 +33,90 @@
   </div>
 
 
-  <section id="about" class="hidden">
-    <h2>Om oss</h2>
-    <p>
-      Vi är ett entreprenörsföretag som brinner för digitala lösningar. Vårt
-      team erbjuder snygga, snabba och säkra webbplatser för små och stora
-      företag.
-    </p>
-  </section>
+    <section id="about" class="hidden">
+      <h2>Om oss</h2>
+      <p>
+        Vi är ett entreprenörsföretag som brinner för digitala lösningar. Vårt
+        team erbjuder snygga, snabba och säkra webbplatser för små och stora
+        företag.
+      </p>
+    </section>
 
-  <section id="services" class="hidden">
-    <h2>Våra tjänster</h2>
-    <div class="grid">
-      <div class="card">
-        <h3>Webbutveckling</h3>
-        <p>Bygger responsiva hemsidor med modern teknik.</p>
+    <section id="services" class="hidden">
+      <h2>Våra tjänster</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Webbutveckling</h3>
+          <p>Bygger responsiva hemsidor med modern teknik.</p>
+        </div>
+        <div class="card">
+          <h3>SEO</h3>
+          <p>Vi optimerar din sida så att du syns på Google.</p>
+        </div>
+        <div class="card">
+          <h3>Support</h3>
+          <p>Snabb och professionell support för våra kunder.</p>
+        </div>
       </div>
-      <div class="card">
-        <h3>SEO</h3>
-        <p>Vi optimerar din sida så att du syns på Google.</p>
-      </div>
-      <div class="card">
-        <h3>Support</h3>
-        <p>Snabb och professionell support för våra kunder.</p>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="products" class="hidden">
-    <h2>Produkter</h2>
-    <div class="grid">
-      <div class="card">
-        <h3>Hemsida Start</h3>
-        <p>Perfekt för små företag som vill komma igång.</p>
+    <section id="products" class="hidden">
+      <h2>Produkter</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Hemsida Start</h3>
+          <p>Perfekt för små företag som vill komma igång.</p>
+        </div>
+        <div class="card">
+          <h3>Hemsida Pro</h3>
+          <p>För växande företag som behöver mer funktionalitet.</p>
+        </div>
+        <div class="card">
+          <h3>E-handel</h3>
+          <p>Komplett webshop med betalningslösningar.</p>
+        </div>
       </div>
-      <div class="card">
-        <h3>Hemsida Pro</h3>
-        <p>För växande företag som behöver mer funktionalitet.</p>
-      </div>
-      <div class="card">
-        <h3>E-handel</h3>
-        <p>Komplett webshop med betalningslösningar.</p>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="reviews" class="hidden">
-    <h2>Recensioner</h2>
-    <div class="grid">
-      <div class="card">
-        <p>"Fantastisk service och grymma hemsidor!"</p>
-        <small>- Anna, butikschef</small>
+    <section id="reviews" class="hidden">
+      <h2>Recensioner</h2>
+      <div class="grid">
+        <div class="card">
+          <p>"Fantastisk service och grymma hemsidor!"</p>
+          <small>- Anna, butikschef</small>
+        </div>
+        <div class="card">
+          <p>"Vi ökade vår försäljning tack vare deras webbdesign."</p>
+          <small>- Johan, entreprenör</small>
+        </div>
+        <div class="card">
+          <p>"Snabb support och proffsiga utvecklare."</p>
+          <small>- Maria, konsult</small>
+        </div>
       </div>
-      <div class="card">
-        <p>"Vi ökade vår försäljning tack vare deras webbdesign."</p>
-        <small>- Johan, entreprenör</small>
-      </div>
-      <div class="card">
-        <p>"Snabb support och proffsiga utvecklare."</p>
-        <small>- Maria, konsult</small>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <footer id="contact">
-    <h2>Kontakta oss</h2>
-    <form action="contact.php" method="POST" class="contact-form">
-      <label for="name">Namn:</label>
-      <input type="text" id="name" name="name" required />
-
-      <label for="email">E-post:</label>
-      <input type="email" id="email" name="email" required />
-
-      <label for="message">Meddelande:</label>
-      <textarea id="message" name="message" rows="5" required></textarea>
-
-      <button type="submit">Skicka</button>
-    </form>
-    <p>&copy; 2025 Entreprenörsbolaget</p>
-  </footer>
+    <footer id="contact">
+      <h2>Kontakta oss</h2>
+      <form id="contact-form" action="contact.php" method="POST" class="contact-form">
+        <label for="name">Namn:</label>
+        <input type="text" id="name" name="name" required />
+      
+        <label for="email">E-post:</label>
+        <input type="email" id="email" name="email" required />
+      
+        <label for="message">Meddelande:</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+      
+        <button type="submit">Skicka</button>
+      </form>
+      
+      <p id="success-message" style="display:none;color:green">Tack! Vi har mottagit ditt meddelande.</p>
+      <p id="error-message" style="display:none;color:red">Tyvärr, något gick fel. Försök igen senare.</p>
+      
+      </form>
+      <p>&copy; 2025 Entreprenörsbolaget</p>
+    </footer>
 
   <script src="JS/script.js"></script>
   <script id="vertexshader" type="x-shader/x-vertex">
