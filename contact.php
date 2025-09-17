@@ -2,31 +2,35 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
+// Ladda PHPMailer-klasser
 require 'PHPMailer/PHPMailer.php';
 require 'PHPMailer/SMTP.php';
 require 'PHPMailer/Exception.php';
 
-header('Content-Type: application/json');
-
+// Läs in .env
 $env = parse_ini_file(__DIR__.'/.env');
 
+// Skapa nytt mail-objekt
 $mail = new PHPMailer(true);
 
 try {
+    // Serverinställningar
     $mail->isSMTP();
-    $mail->Host       = $env['SMTP_HOST'];
+    $mail->Host       = $env['SMTP_HOST'];      // t.ex. secure.emailsrvr.com
     $mail->SMTPAuth   = true;
-    $mail->Username   = $env['SMTP_USERNAME'];
-    $mail->Password   = $env['SMTP_PASSWORD'];
+    $mail->Username   = $env['SMTP_USERNAME'];  // din Rackspace-mail
+    $mail->Password   = $env['SMTP_PASSWORD'];  // lösenordet
     $mail->SMTPSecure = 'tls';
-    $mail->Port       = $env['SMTP_PORT'];
+    $mail->Port       = $env['SMTP_PORT'];      // 587
 
+    // Avsändare och mottagare
     $mail->setFrom($env['SMTP_FROM'], $env['SMTP_FROM_NAME']);
-    $mail->addAddress('din-mottagare@exempel.com');
+    $mail->addAddress('din-mottagare@exempel.com'); // t.ex. din privata mejl
 
-    $name    = trim($_POST['name'] ?? '');
-    $email   = filter_var($_POST['email'] ?? '', FILTER_SANITIZE_EMAIL);
-    $message = trim($_POST['message'] ?? '');
+    // Innehåll från formuläret
+    $name    = $_POST['name'] ?? '';
+    $email   = $_POST['email'] ?? '';
+    $message = $_POST['message'] ?? '';
 
     $mail->Subject = "Nytt meddelande från $name";
     $mail->Body    = "Namn: $name\nE-post: $email\n\nMeddelande:\n$message";
