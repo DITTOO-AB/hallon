@@ -4,8 +4,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://threejs.org/examples/js/loaders/FontLoader.js"></script>
+  <script src="https://threejs.org/examples/fonts/helvetiker_regular.typeface.json"></script>
   <title>Entreprenörsbolaget</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style/style.css" />
 </head>
 
 <body>
@@ -23,11 +26,10 @@
   </header>
 
   <div id="hero" class="parallax">
-    <div class="hero-content">
-      <h2>Vi bygger responsiva hemsidor</h2>
-      <p>Moderna lösningar för entreprenörer och företag.</p>
-      <a href="#services" class="btn">Våra tjänster</a>
-    </div>
+    <video id="hero-video" autoplay loop muted playsinline>
+      <source src="/hallon/img/0_Office_Meeting_Room_3840x2020.mp4" type="video/mp4">
+    </video>
+    <div id="magic"></div>
   </div>
 
 
@@ -111,7 +113,26 @@
     <p>&copy; 2025 Entreprenörsbolaget</p>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="JS/script.js"></script>
+  <script id="vertexshader" type="x-shader/x-vertex">
+    attribute float size;
+    attribute vec3 customColor;
+    varying vec3 vColor;
+    void main() {
+        vColor = customColor;
+        vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
+        gl_PointSize = size * ( 300.0 / -mvPosition.z );
+        gl_Position = projectionMatrix * mvPosition;
+    }
+</script>
+  <script id="fragmentshader" type="x-shader/x-fragment">
+    varying vec3 vColor;
+    uniform sampler2D pointTexture;
+    void main() {
+        gl_FragColor = vec4( vColor, 1.0 );
+        gl_FragColor = gl_FragColor * texture2D( pointTexture, gl_PointCoord );
+    }
+</script>
 </body>
 
 </html>
