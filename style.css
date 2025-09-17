@@ -8,6 +8,10 @@
 
 body {
     line-height: 1.6;
+    background-color: lightgrey;
+    margin: 0;
+    padding: 0;
+    height: 100%;
 }
 
 header {
@@ -32,7 +36,7 @@ header h1 a {
 }
 
 header h1 a:hover {
-    color: #ff9900;
+    color: #6e93ab;
 }
 
 
@@ -49,7 +53,7 @@ nav a {
 }
 
 nav a:hover {
-    color: #ff9900;
+    color: #6e93ab;
 }
 
 #menu-toggle {
@@ -61,21 +65,72 @@ nav a:hover {
     cursor: pointer;
 }
 
-.hero {
-    background: url('https://picsum.photos/1200/500?business') no-repeat center center/cover;
-    color: white;
+/* Hero med parallax */
+.parallax {
+    background-image: url(../hallon/img/cool-gray-61nfwad1bullevu4.jpg);
+    /* byt till en passande bakgrund */
+    height: 100vh;
+    /* täcker hela skärmen */
+    width: 100%;
+    background-attachment: fixed;
+    /* 🔑 gör parallax-effekten */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    padding: 100px 20px;
+    color: #fff;
+    position: relative;
 }
 
-.hero h1 {
-    font-size: 3rem;
+/* Mörk overlay för bättre läsbarhet */
+.parallax::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    /* halvtransparent svart */
+    z-index: 0;
 }
 
-.hero p {
-    margin-top: 10px;
+/* Hero-innehåll */
+.hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 700px;
+}
+
+.hero-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: white;
+}
+
+.hero-content p {
     font-size: 1.2rem;
+    margin-bottom: 2rem;
 }
+
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background: #757370;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+
+.btn:hover {
+    background: #6e93ab;
+}
+
 
 section {
     padding: 60px 20px;
