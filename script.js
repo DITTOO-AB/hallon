@@ -24,31 +24,33 @@ if (hiddenElements.length > 0) {
   hiddenElements.forEach(el => observer.observe(el));
 }
 
-// ----- Formspree kontaktformulär -----
+// ----- kontaktformulär -----
 const form = document.getElementById('contact-form');
 const successMessage = document.getElementById('success-message');
 const errorMessage = document.getElementById('error-message');
 
 if (form) {
   form.addEventListener('submit', async (e) => {
-    e.preventDefault(); // Stoppar formuläret från att ladda om sidan
+    e.preventDefault();
     const formData = new FormData(form);
 
     try {
       const response = await fetch(form.action, {
-        method: form.method,
+        method: 'POST',
         body: formData,
         headers: { 'Accept': 'application/json' }
       });
 
-      if (response.ok) {
+      const result = await response.json();
+
+      if (result.success) {
         successMessage.style.display = 'block';
         errorMessage.style.display = 'none';
         form.reset();
       } else {
-        throw new Error('Något gick fel');
+        throw new Error(result.message);
       }
-    } catch (error) {
+    } catch (err) {
       successMessage.style.display = 'none';
       errorMessage.style.display = 'block';
     }
