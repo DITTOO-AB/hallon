@@ -42,5 +42,9 @@ try {
     // Skicka JSON-respons till frontend
     echo json_encode(["success" => true, "message" => "Tack! Ditt meddelande har skickats."]);
 } catch (Exception $e) {
-    echo json_encode(["success" => false, "message" => "Något gick fel: {$mail->ErrorInfo}"]);
+  // Om något går fel hamnar vi här
+  echo json_encode([
+    "success" => false,
+    "message" => "Något gick fel: {$mail->ErrorInfo}"
+]);
 }
