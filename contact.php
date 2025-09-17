@@ -4,7 +4,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = htmlspecialchars($_POST["email"]);
     $message = htmlspecialchars($_POST["message"]);
 
-    $to = "info@entreprenorsbolaget.se"; // Din e-postadress
+    $to = "annasigridmolly@gmail.com"; // Din e-postadress
     $subject = "Nytt meddelande från $name";
     $body = "Namn: $name\nE-post: $email\n\nMeddelande:\n$message";
     $headers = "From: $email";
