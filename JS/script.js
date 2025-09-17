@@ -1,7 +1,6 @@
 // ----- Meny toggle -----
 const menuToggle = document.getElementById("menu-toggle");
 const navbar = document.getElementById("navbar");
-
 if (menuToggle) {
   menuToggle.addEventListener("click", () => {
     navbar.classList.toggle("active");
@@ -10,7 +9,6 @@ if (menuToggle) {
 
 // ----- Fade-in för sektioner -----
 const hiddenElements = document.querySelectorAll(".hidden");
-
 if (hiddenElements.length > 0) {
   const observer = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
@@ -20,15 +18,13 @@ if (hiddenElements.length > 0) {
       }
     });
   }, { threshold: 0.2 });
-
   hiddenElements.forEach(el => observer.observe(el));
 }
 
-// ----- kontaktformulär -----
+// ----- Kontaktformulär -----
 const form = document.getElementById('contact-form');
 const successMessage = document.getElementById('success-message');
 const errorMessage = document.getElementById('error-message');
-
 if (form) {
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
