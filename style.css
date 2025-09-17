@@ -6,6 +6,7 @@
     font-family: Arial, sans-serif;
 }
 
+html,
 body {
     line-height: 1.6;
     background-color: lightgrey;
@@ -67,7 +68,7 @@ nav a:hover {
 
 /* Hero med parallax */
 .parallax {
-    background-image: url(../hallon/img/cool-gray-61nfwad1bullevu4.jpg);
+    background-image: url('img/cool-gray-61nfwad1bullevu4.jpg');
     /* byt till en passande bakgrund */
     height: 100vh;
     /* täcker hela skärmen */
@@ -212,21 +213,21 @@ footer p {
     flex-direction: column;
     max-width: 400px;
     margin: 1rem auto;
-  }
-  
-  .contact-form label {
+}
+
+.contact-form label {
     margin-top: 10px;
-  }
-  
-  .contact-form input,
-  .contact-form textarea {
+}
+
+.contact-form input,
+.contact-form textarea {
     padding: 8px;
     margin-top: 5px;
     border-radius: 5px;
     border: 1px solid #ccc;
-  }
-  
-  .contact-form button {
+}
+
+.contact-form button {
     margin-top: 15px;
     padding: 10px;
     background: #333;
@@ -234,9 +235,8 @@ footer p {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-  }
-  
-  .contact-form button:hover {
+}
+
+.contact-form button:hover {
     background: #555;
-  }
-  
+}
