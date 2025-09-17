@@ -1,143 +1,158 @@
 <!DOCTYPE html>
 <html lang="sv">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://threejs.org/examples/js/loaders/FontLoader.js"></script>
+    <script src="https://threejs.org/examples/fonts/helvetiker_regular.typeface.json"></script>
+    <title>Entreprenörsbolaget</title>
+    <link rel="stylesheet" href="style/style.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <script src="https://threejs.org/examples/js/loaders/FontLoader.js"></script>
-  <script src="https://threejs.org/examples/fonts/helvetiker_regular.typeface.json"></script>
-  <title>Entreprenörsbolaget</title>
-  <link rel="stylesheet" href="style/style.css" />
-</head>
+  <body>
+    <!-- Header & Nav -->
+    <header>
+      <h1><a href="index.html">Entreprenörsbolaget</a></h1>
+      <nav id="navbar">
+        <a href="#about">Om oss</a>
+        <a href="#services">Våra tjänster</a>
+        <a href="#products">Produkter</a>
+        <a href="#reviews">Recensioner</a>
+        <a href="#contact">Kontakt</a>
+        <button id="menu-toggle">☰</button>
+      </nav>
+    </header>
 
-<body>
-  <!-- Header & Nav -->
-  <header>
-    <h1><a href="index.html">Entreprenörsbolaget</a></h1>
-    <nav id="navbar">
-      <a href="#about">Om oss</a>
-      <a href="#services">Våra tjänster</a>
-      <a href="#products">Produkter</a>
-      <a href="#reviews">Recensioner</a>
-      <a href="#contact">Kontakt</a>
-      <button id="menu-toggle">☰</button>
-    </nav>
-  </header>
-
-  <div id="hero" class="parallax">
-    <video id="hero-video" autoplay loop muted playsinline>
-      <source src="img/0_Office_Meeting_Room_3840x2020.mp4" type="video/mp4">
-    </video>
-    <div id="magic"></div>
-  </div>
-
-
-  <section id="about" class="hidden">
-    <h2>Om oss</h2>
-    <p>
-      Vi är ett entreprenörsföretag som brinner för digitala lösningar. Vårt
-      team erbjuder snygga, snabba och säkra webbplatser för små och stora
-      företag.
-    </p>
-  </section>
-
-  <section id="services" class="hidden">
-    <h2>Våra tjänster</h2>
-    <div class="grid">
-      <div class="card">
-        <h3>Webbutveckling</h3>
-        <p>Bygger responsiva hemsidor med modern teknik.</p>
-      </div>
-      <div class="card">
-        <h3>SEO</h3>
-        <p>Vi optimerar din sida så att du syns på Google.</p>
-      </div>
-      <div class="card">
-        <h3>Support</h3>
-        <p>Snabb och professionell support för våra kunder.</p>
-      </div>
+    <div id="hero" class="parallax">
+      <video id="hero-video" autoplay loop muted playsinline>
+        <source
+          src="img/0_Office_Meeting_Room_3840x2020.mp4"
+          type="video/mp4"
+        />
+      </video>
+      <div id="magic"></div>
     </div>
-  </section>
 
-  <section id="products" class="hidden">
-    <h2>Produkter</h2>
-    <div class="grid">
-      <div class="card">
-        <h3>Hemsida Start</h3>
-        <p>Perfekt för små företag som vill komma igång.</p>
+    <section id="about" class="hidden">
+      <h2>Om oss</h2>
+      <p>
+        Vi är ett entreprenörsföretag som brinner för digitala lösningar. Vårt
+        team erbjuder snygga, snabba och säkra webbplatser för små och stora
+        företag.
+      </p>
+    </section>
+
+    <section id="services" class="hidden">
+      <h2>Våra tjänster</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Webbutveckling</h3>
+          <p>Bygger responsiva hemsidor med modern teknik.</p>
+        </div>
+        <div class="card">
+          <h3>SEO</h3>
+          <p>Vi optimerar din sida så att du syns på Google.</p>
+        </div>
+        <div class="card">
+          <h3>Support</h3>
+          <p>Snabb och professionell support för våra kunder.</p>
+        </div>
       </div>
-      <div class="card">
-        <h3>Hemsida Pro</h3>
-        <p>För växande företag som behöver mer funktionalitet.</p>
+    </section>
+
+    <section id="products" class="hidden">
+      <h2>Produkter</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Hemsida Start</h3>
+          <p>Perfekt för små företag som vill komma igång.</p>
+        </div>
+        <div class="card">
+          <h3>Hemsida Pro</h3>
+          <p>För växande företag som behöver mer funktionalitet.</p>
+        </div>
+        <div class="card">
+          <h3>E-handel</h3>
+          <p>Komplett webshop med betalningslösningar.</p>
+        </div>
       </div>
-      <div class="card">
-        <h3>E-handel</h3>
-        <p>Komplett webshop med betalningslösningar.</p>
+    </section>
+
+    <section id="reviews" class="hidden">
+      <h2>Recensioner</h2>
+      <div class="grid">
+        <div class="card">
+          <p>"Fantastisk service och grymma hemsidor!"</p>
+          <small>- Anna, butikschef</small>
+        </div>
+        <div class="card">
+          <p>"Vi ökade vår försäljning tack vare deras webbdesign."</p>
+          <small>- Johan, entreprenör</small>
+        </div>
+        <div class="card">
+          <p>"Snabb support och proffsiga utvecklare."</p>
+          <small>- Maria, konsult</small>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="reviews" class="hidden">
-    <h2>Recensioner</h2>
-    <div class="grid">
-      <div class="card">
-        <p>"Fantastisk service och grymma hemsidor!"</p>
-        <small>- Anna, butikschef</small>
-      </div>
-      <div class="card">
-        <p>"Vi ökade vår försäljning tack vare deras webbdesign."</p>
-        <small>- Johan, entreprenör</small>
-      </div>
-      <div class="card">
-        <p>"Snabb support och proffsiga utvecklare."</p>
-        <small>- Maria, konsult</small>
-      </div>
-    </div>
-  </section>
+    <footer id="contact">
+      <h2>Kontakta oss</h2>
+      <form
+        id="contact-form"
+        action="contact.php"
+        method="POST"
+        class="contact-form"
+      >
+        <label for="name">Namn:</label>
+        <input type="text" id="name" name="name" required />
 
-  <footer id="contact">
-    <h2>Kontakta oss</h2>
-    <form id="contact-form" action="contact.php" method="POST" class="contact-form">
-      <label for="name">Namn:</label>
-      <input type="text" id="name" name="name" required />
+        <label for="email">E-post:</label>
+        <input type="email" id="email" name="email" required />
 
-      <label for="email">E-post:</label>
-      <input type="email" id="email" name="email" required />
+        <label for="message">Meddelande:</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
 
-      <label for="message">Meddelande:</label>
-      <textarea id="message" name="message" rows="5" required></textarea>
+        <button type="submit">Skicka</button>
 
-      <button type="submit">Skicka</button>
-    </form>
+        <!-- Plats för feedback till användaren -->
+        <p
+          id="success-message"
+          style="display: none; color: green; margin-top: 10px"
+        >
+          Tack! Vi har mottagit ditt meddelande.
+        </p>
+        <p
+          id="error-message"
+          style="display: none; color: red; margin-top: 10px"
+        >
+          Tyvärr, något gick fel. Försök igen senare.
+        </p>
+      </form>
 
-    <p id="success-message" style="display:none;color:green">Tack! Vi har mottagit ditt meddelande.</p>
-    <p id="error-message" style="display:none;color:red">Tyvärr, något gick fel. Försök igen senare.</p>
+      <p>&copy; 2025 Entreprenörsbolaget</p>
+    </footer>
 
-    </form>
-    <p>&copy; 2025 Entreprenörsbolaget</p>
-  </footer>
-
-  <script src="JS/script.js"></script>
-  <script id="vertexshader" type="x-shader/x-vertex">
-    attribute float size;
-    attribute vec3 customColor;
-    varying vec3 vColor;
-    void main() {
-        vColor = customColor;
-        vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
-        gl_PointSize = size * ( 300.0 / -mvPosition.z );
-        gl_Position = projectionMatrix * mvPosition;
-    }
-</script>
-  <script id="fragmentshader" type="x-shader/x-fragment">
-    varying vec3 vColor;
-    uniform sampler2D pointTexture;
-    void main() {
-        gl_FragColor = vec4( vColor, 1.0 );
-        gl_FragColor = gl_FragColor * texture2D( pointTexture, gl_PointCoord );
-    }
-</script>
-</body>
-
+    <script src="JS/script.js"></script>
+    <script id="vertexshader" type="x-shader/x-vertex">
+      attribute float size;
+      attribute vec3 customColor;
+      varying vec3 vColor;
+      void main() {
+          vColor = customColor;
+          vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
+          gl_PointSize = size * ( 300.0 / -mvPosition.z );
+          gl_Position = projectionMatrix * mvPosition;
+      }
+    </script>
+    <script id="fragmentshader" type="x-shader/x-fragment">
+      varying vec3 vColor;
+      uniform sampler2D pointTexture;
+      void main() {
+          gl_FragColor = vec4( vColor, 1.0 );
+          gl_FragColor = gl_FragColor * texture2D( pointTexture, gl_PointCoord );
+      }
+    </script>
+  </body>
 </html>
