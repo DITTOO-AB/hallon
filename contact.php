@@ -1,21 +1,35 @@
 <?php
-// Namespaces för PHPMailer
+// ----- Error reporting -----
+ini_set('display_errors', 0); // Sätt till 1 för utveckling
+ini_set('log_errors', 1);
+error_reporting(E_ALL);
+
+// ----- Namespaces för PHPMailer -----
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-// Ladda PHPMailer-klasserna
+// ----- Ladda PHPMailer-klasser -----
 require 'PHPMailer/PHPMailer.php';
 require 'PHPMailer/SMTP.php';
 require 'PHPMailer/Exception.php';
 
-// Läs in .env
-$env = parse_ini_file(__DIR__.'/.env');
+// ----- Läs in .env -----
+$envFile = __DIR__.'/.env';
+if (!file_exists($envFile)) {
+    echo json_encode([
+        "success" => false,
+        "message" => "Miljöfilen saknas."
+    ]);
+    exit;
+}
 
-// Skapa nytt mail-objekt
+$env = parse_ini_file($envFile);
+
+// ----- Skapa nytt mail-objekt -----
 $mail = new PHPMailer(true);
 
 try {
-    // SMTP-inställningar för Rackspace
+    // ----- SMTP-inställningar för Rackspace -----
     $mail->isSMTP();
     $mail->Host       = $env['SMTP_HOST'];
     $mail->SMTPAuth   = true;
@@ -24,27 +38,43 @@ try {
     $mail->SMTPSecure = 'tls';
     $mail->Port       = $env['SMTP_PORT'];
 
-    // Avsändare och mottagare
+    // ----- Avsändare och mottagare -----
     $mail->setFrom($env['SMTP_FROM'], $env['SMTP_FROM_NAME']);
-    $mail->addAddress('annasigridmolly@gmail.com'); // byt till din egen e-post
+    $mail->addAddress($env['SMTP_FROM']); // Du kan byta till annan mottagare
 
-    // Ta emot data från formuläret
-    $name    = $_POST['name'] ?? '';
-    $email   = $_POST['email'] ?? '';
-    $message = $_POST['message'] ?? '';
+    // ----- Ta emot data från formuläret -----
+    $name    = trim($_POST['name'] ?? '');
+    $email   = trim($_POST['email'] ?? '');
+    $message = trim($_POST['message'] ?? '');
+
+    if (empty($name) || empty($email) || empty($message)) {
+        echo json_encode([
+            "success" => false,
+            "message" => "Alla fält måste fyllas i."
+        ]);
+        exit;
+    }
 
     $mail->Subject = "Nytt meddelande från $name";
     $mail->Body    = "Namn: $name\nE-post: $email\n\nMeddelande:\n$message";
 
-    // Skicka mailet
+    // ----- Skicka mailet -----
     $mail->send();
 
-    // Skicka JSON-respons till frontend
-    echo json_encode(["success" => true, "message" => "Tack! Ditt meddelande har skickats."]);
+    // ----- JSON-respons -----
+    echo json_encode([
+        "success" => true,
+        "message" => "Tack! Ditt meddelande har skickats."
+    ]);
+
 } catch (Exception $e) {
-  // Om något går fel hamnar vi här
-  echo json_encode([
-    "success" => false,
-    "message" => "Något gick fel: {$mail->ErrorInfo}"
-]);
+    // ----- Logga fel -----
+    $log = "[".date('Y-m-d H:i:s')."] ".$mail->ErrorInfo.PHP_EOL;
+    file_put_contents(__DIR__.'/mail_error.log', $log, FILE_APPEND);
+
+    // ----- JSON-respons till frontend -----
+    echo json_encode([
+        "success" => false,
+        "message" => "Något gick fel. Kolla mail_error.log för detaljer."
+    ]);
 }
