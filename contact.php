@@ -62,15 +62,19 @@ try {
     $mail->AltBody = "Namn: $name\nE-post: $email\n\nMeddelande:\n$message";
 
     // ----- reCAPTCHA kontroll ----- $recaptchaToken = $_POST['recaptcha_token'] ?? '';
+    $recaptchaToken = $_POST['recaptcha_token'] ?? '';
     $recaptchaSecret = $env['RECAPTCHA_SECRET'];
-    $response = file_get_contents($verifyUrl . '?secret=' . $recaptchaSecret . '&response=' . $recaptchaToken);$responseKeys = json_decode($response, true);
+    $verifyUrl = 'https://www.google.com/recaptcha/api/siteverify';$response = file_get_contents($verifyUrl . '?secret=' . urlencode($recaptchaSecret) . '&response=' . urlencode($recaptchaToken));$responseKeys = json_decode($response, true);
     if (!$recaptchaToken) {
         echo json_encode([
             "success" => false,
             "message" => "reCAPTCHA-token saknas."    ]);
         exit;
     }
-    $verifyUrl = 'https://www.google.com/recaptcha/api/siteverify';$response = file_get_contents($verifyUrl . '?secret=' . urlencode($recaptchaSecret) . '&response=' . urlencode($recaptchaToken));$responseKeys = json_decode($response, true);
+
+    $response = file_get_contents($verifyUrl . '?secret=' . $recaptchaSecret . '&response=' . $recaptchaToken);
+    $responseKeys = json_decode($response, true);
+   
     if (!$responseKeys["success"] || $responseKeys["score"] < 0.5) {
         echo json_encode([
             "success" => false,
