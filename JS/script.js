@@ -53,7 +53,7 @@ if (form) {
   });
 }
 
-// ----- THREE.js partikelanimation (ny kod) -----
+// ----- THREE.js partikelanimation -----
 const preload = () => {
   let manager = new THREE.LoadingManager();
   manager.onLoad = function () {
@@ -116,6 +116,17 @@ class Environment {
     this.camera.aspect = this.container.clientWidth / this.container.clientHeight;
     this.camera.updateProjectionMatrix();
     this.renderer.setSize(this.container.clientWidth, this.container.clientHeight);
+
+    // 🔑 Responsiv textstorlek
+    if (window.innerWidth < 768) {
+      this.createParticles.data.textSize = 8;
+    } else {
+      this.createParticles.data.textSize = 16;
+    }
+
+    // 🔑 Skapa om textgeometrin
+    this.scene.remove(this.createParticles.particles);
+    this.createParticles.createText();
   }
 }
 
@@ -135,7 +146,7 @@ class CreateParticles {
       amount: 1500,
       particleSize: 1,
       particleColor: 0xffffff,
-      textSize: 16,
+      textSize: window.innerWidth < 768 ? 8 : 16,
       area: 250,
       ease: .05,
     }
