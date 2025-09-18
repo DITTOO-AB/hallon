@@ -25,31 +25,41 @@ if (hiddenElements.length > 0) {
 const form = document.getElementById('contact-form');
 const successMessage = document.getElementById('success-message');
 const errorMessage = document.getElementById('error-message');
+
 if (form) {
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const formData = new FormData(form);
 
-    try {
-      const response = await fetch(form.action, {
-        method: 'POST',
-        body: formData,
-        headers: { 'Accept': 'application/json' }
-      });
+    grecaptcha.ready(async function () {
+      try {
+        const token = await grecaptcha.execute('6LcmZM0rAAAAADmn_BjYbL6upVQRRTkPFxQ9_eeq', { action: 'submit' });
 
-      const result = await response.json();
+        const formData = new FormData(form);
+        formData.append('recaptcha_token', token);
 
-      if (result.success) {
-        successMessage.style.display = 'block';
-        errorMessage.style.display = 'none';
-        form.reset();
-      } else {
-        throw new Error(result.message);
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: formData,
+          headers: { 'Accept': 'application/json' }
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+          successMessage.style.display = 'block';
+          errorMessage.style.display = 'none';
+          form.reset();
+        } else {
+          // Visa servermeddelande om det finns, annars ett standardmeddelande
+          throw new Error(result.message || 'Ett fel uppstod, vänligen försök igen.');
+        }
+      } catch (err) {
+        // Logga felet till konsolen för felsökning
+        console.error('Fel vid formulärhantering:', err);
+        successMessage.style.display = 'none';
+        errorMessage.style.display = 'block';
       }
-    } catch (err) {
-      successMessage.style.display = 'none';
-      errorMessage.style.display = 'block';
-    }
+    });
   });
 }
 
