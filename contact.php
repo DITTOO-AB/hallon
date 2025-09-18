@@ -29,6 +29,8 @@ $env = parse_ini_file($envFile);
 $mail = new PHPMailer(true);
 
 try {
+    $mail->CharSet  = 'UTF-8';
+    $mail->Encoding = 'base64';
     // ----- SMTP-inställningar för Rackspace -----
     $mail->isSMTP();
     $mail->Host       = $env['SMTP_HOST'];
@@ -57,6 +59,7 @@ try {
 
     $mail->Subject = "Nytt meddelande från $name";
     $mail->Body    = "Namn: $name\nE-post: $email\n\nMeddelande:\n$message";
+    $mail->AltBody = "Namn: $name\nE-post: $email\n\nMeddelande:\n$message";
 
     // ----- Skicka mailet -----
     $mail->send();
