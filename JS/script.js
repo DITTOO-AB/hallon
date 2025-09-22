@@ -32,7 +32,7 @@ if (form) {
 
     grecaptcha.ready(async function () {
       try {
-        const token = await grecaptcha.execute('6LcmZM0rAAAAADmn_BjYbL6upVQRRTkPFxQ9_eeq', { action: 'submit' });
+        const token = await grecaptcha.execute('6LdcJNErAAAAAGCk1pUTy51RQ_CqNY87OGTAKRN6', { action: 'submit' });
 
         const formData = new FormData(form);
         formData.append('recaptcha_token', token);
