@@ -64,17 +64,17 @@ if (form) {
 }
 
 // ----- THREE.js partikelanimation -----
-const preload = () => {
-  let manager = new THREE.LoadingManager();
-  manager.onLoad = function () {
-    const environment = new Environment(typo, particle);
-  }
+// const preload = () => {
+//   let manager = new THREE.LoadingManager();
+//   manager.onLoad = function () {
+//     const environment = new Environment(typo, particle);
+//   }
 
-  var typo = null;
-  const loader = new THREE.FontLoader(manager);
-  const font = loader.load('https://res.cloudinary.com/dydre7amr/raw/upload/v1612950355/font_zsd4dr.json', function (font) { typo = font; });
-  const particle = new THREE.TextureLoader(manager).load('https://res.cloudinary.com/dfvtkoboz/image/upload/v1605013866/particle_a64uzf.png');
-}
+//   var typo = null;
+//   const loader = new THREE.FontLoader(manager);
+//   const font = loader.load('https://res.cloudinary.com/dydre7amr/raw/upload/v1612950355/font_zsd4dr.json', function (font) { typo = font; });
+//   const particle = new THREE.TextureLoader(manager).load('https://res.cloudinary.com/dfvtkoboz/image/upload/v1605013866/particle_a64uzf.png');
+// }
 
 if (document.readyState === "complete" || (document.readyState !== "loading" && !document.documentElement.doScroll))
   preload();
