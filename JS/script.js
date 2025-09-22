@@ -30,38 +30,43 @@ if (form) {
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    grecaptcha.ready(async function () {
+    try {
+      const formData = new FormData(form);
+
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      let result;
       try {
-        const token = await grecaptcha.execute('6LdcJNErAAAAAGCk1pUTy51RQ_CqNY87OGTAKRN6', { action: 'submit' });
-
-        const formData = new FormData(form);
-        formData.append('recaptcha_token', token);
-
-        const response = await fetch(form.action, {
-          method: 'POST',
-          body: formData,
-          headers: { 'Accept': 'application/json' }
-        });
-
-        const result = await response.json();
-
-        if (result.success) {
-          successMessage.style.display = 'block';
-          errorMessage.style.display = 'none';
-          form.reset();
-        } else {
-          // Visa servermeddelande om det finns, annars ett standardmeddelande
-          throw new Error(result.message || 'Ett fel uppstod, vänligen försök igen.');
-        }
-      } catch (err) {
-        // Logga felet till konsolen för felsökning
-        console.error('Fel vid formulärhantering:', err);
-        successMessage.style.display = 'none';
-        errorMessage.style.display = 'block';
+        result = await response.json();
+      } catch (jsonErr) {
+        throw new Error('Kunde inte tolka svar från servern.');
       }
-    });
+
+      console.log("Svar från servern:", result); // 🔍 logga alltid
+
+      if (result.success) {
+        successMessage.style.display = 'block';
+        errorMessage.style.display = 'none';
+        successMessage.textContent = result.message || "Tack! Ditt meddelande har skickats.";
+        form.reset();
+      } else {
+        errorMessage.style.display = 'block';
+        successMessage.style.display = 'none';
+        errorMessage.textContent = result.message || "Ett fel uppstod, vänligen försök igen.";
+      }
+    } catch (err) {
+      console.error('Fel vid formulärhantering:', err);
+      successMessage.style.display = 'none';
+      errorMessage.style.display = 'block';
+      errorMessage.textContent = err.message || "Ett oväntat fel uppstod.";
+    }
   });
 }
+
 
 // ----- THREE.js partikelanimation -----
 // const preload = () => {
